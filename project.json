@@ -98,6 +98,15 @@
         "name": "assets\\Automobile.png",
         "smoothed": true,
         "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "assets/Starwood.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "assets\\Starwood.png",
+        "smoothed": true,
+        "userAdded": true
       }
     ],
     "resourceFolders": []
@@ -158,6 +167,54 @@
               "value": 0
             }
           ]
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "keepRatio": true,
+          "layer": "",
+          "name": "Starwood",
+          "persistentUuid": "70200446-14fc-4c47-98e4-1602eb12ef48",
+          "width": 0,
+          "x": -35,
+          "y": -244,
+          "zOrder": 2,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "keepRatio": true,
+          "layer": "",
+          "name": "Starwood",
+          "persistentUuid": "372ac4f4-e4d2-48f3-9a5c-25424aca5cd8",
+          "width": 0,
+          "x": 652,
+          "y": -244,
+          "zOrder": 2,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 90,
+          "customSize": false,
+          "height": 0,
+          "keepRatio": true,
+          "layer": "",
+          "name": "Starwood",
+          "persistentUuid": "f1ddda16-a841-476d-b591-16ee66ced208",
+          "width": 0,
+          "x": -429,
+          "y": 254,
+          "zOrder": 2,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
         }
       ],
       "objects": [
@@ -275,6 +332,90 @@
               ]
             }
           ]
+        },
+        {
+          "adaptCollisionMaskAutomatically": true,
+          "assetStoreId": "",
+          "name": "Starwood",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [],
+          "effects": [],
+          "behaviors": [
+            {
+              "name": "Physics2",
+              "type": "Physics2::Physics2Behavior",
+              "bodyType": "Static",
+              "bullet": false,
+              "fixedRotation": false,
+              "canSleep": true,
+              "shape": "Box",
+              "shapeDimensionA": 0,
+              "shapeDimensionB": 0,
+              "shapeOffsetX": 0,
+              "shapeOffsetY": 0,
+              "polygonOrigin": "Center",
+              "vertices": [],
+              "density": 1,
+              "friction": 0,
+              "restitution": 0.1,
+              "linearDamping": 0.1,
+              "angularDamping": 0.1,
+              "gravityScale": 0,
+              "layers": 1,
+              "masks": 1
+            }
+          ],
+          "animations": [
+            {
+              "name": "",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": true,
+                      "image": "assets\\Starwood.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": [
+                        [
+                          {
+                            "x": 0,
+                            "y": 0
+                          },
+                          {
+                            "x": 687,
+                            "y": 0
+                          },
+                          {
+                            "x": 687,
+                            "y": 308
+                          },
+                          {
+                            "x": 0,
+                            "y": 308
+                          }
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ],
       "objectsFolderStructure": {
@@ -282,6 +423,9 @@
         "children": [
           {
             "objectName": "Player"
+          },
+          {
+            "objectName": "Starwood"
           }
         ]
       },
@@ -307,8 +451,38 @@
             "const player = objects[0];",
             "const player_vars = player.getVariables();",
             "",
+            "const movingNorth = player_vars.get(\"MovingNorth\").getAsBoolean();",
+            "const movingSouth = player_vars.get(\"MovingSouth\").getAsBoolean();",
+            "const movingWest = player_vars.get(\"MovingWest\").getAsBoolean();",
+            "const movingEast = player_vars.get(\"MovingEast\").getAsBoolean();",
+            "",
+            "// Set target rotation",
+            "let b = 0;",
+            "",
+            "if (movingNorth) {",
+            "    b = movingWest ? NORTHWEST_ROTATION : movingEast ? NORTHEAST_ROTATION : NORTH_ROTATION;",
+            "} else if (movingSouth) {",
+            "    b = movingWest ? SOUTHWEST_ROTATION : movingEast ? SOUTHEAST_ROTATION : SOUTH_ROTATION;",
+            "} else if (movingWest) {",
+            "    b = WEST_ROTATION;",
+            "} else if (movingEast) {",
+            "    b = EAST_ROTATION;",
+            "} else {",
+            "    b = player_vars.get(\"TargetRotation\").getAsNumber();",
+            "}",
+            "",
+            "const moving = movingNorth || movingSouth || movingWest || movingEast;",
+            "",
+            "// Inertia",
+            "if (!moving) {",
+            "    if ([NORTH_ROTATION, SOUTH_ROTATION, WEST_ROTATION, EAST_ROTATION].indexOf(b) == -1  && b != 0) {",
+            "        b -= 45;",
+            "    }",
+            "}",
+            "",
+            "player_vars.get(\"TargetRotation\").setNumber(b);",
+            "",
             "let a = lock360Degrees(player.getAngle());",
-            "let b = player_vars.get(\"TargetRotation\").getAsNumber();",
             "",
             "if (a != b) {",
             "    // Rotate either clockwise or counterclockwise for the",
@@ -344,29 +518,19 @@
             "    return a % 360;",
             "}",
             "",
-            "const movingNorth = player_vars.get(\"MovingNorth\").getAsBoolean();",
-            "const movingSouth = player_vars.get(\"MovingSouth\").getAsBoolean();",
-            "const movingWest = player_vars.get(\"MovingWest\").getAsBoolean();",
-            "const movingEast = player_vars.get(\"MovingEast\").getAsBoolean();",
-            "",
-            "// Set target rotation",
-            "if (movingNorth) {",
-            "    player_vars.get(\"TargetRotation\").setNumber(movingWest ? NORTHWEST_ROTATION : movingEast ? NORTHEAST_ROTATION : NORTH_ROTATION);",
-            "} else if (movingSouth) {",
-            "    player_vars.get(\"TargetRotation\").setNumber(movingWest ? SOUTHWEST_ROTATION : movingEast ? SOUTHEAST_ROTATION : SOUTH_ROTATION);",
-            "} else if (movingWest) {",
-            "    player_vars.get(\"TargetRotation\").setNumber(WEST_ROTATION);",
-            "} else if (movingEast) {",
-            "    player_vars.get(\"TargetRotation\").setNumber(EAST_ROTATION);",
+            "// Moving",
+            "if (moving) {",
+            "    /*",
+            "    const b_radians = toRadians(b);",
+            "    let x = Math.cos(b_radians);",
+            "    let y = Math.sin(b_radians);",
+            "    player.addForce(x, y);",
+            "    */",
             "}",
             "",
-            "// Inertia",
-            "if (!(movingNorth || movingSouth || movingWest || movingEast)) {",
-            "    if ([NORTH_ROTATION, SOUTH_ROTATION, WEST_ROTATION, EAST_ROTATION].indexOf(b) == -1  && b != 0) {",
-            "        b -= 45;",
-            "        player_vars.get(\"TargetRotation\").setNumber(b);",
-            "    }",
-            "} "
+            "function toRadians(a) {",
+            "    return a * Math.PI / 180;",
+            "}"
           ],
           "parameterObjects": "Player",
           "useStrict": true,
