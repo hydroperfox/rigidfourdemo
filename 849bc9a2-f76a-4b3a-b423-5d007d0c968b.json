@@ -1,0 +1,661 @@
+{
+  "firstLayout": "",
+  "gdVersion": {
+    "build": 99,
+    "major": 4,
+    "minor": 0,
+    "revision": 0
+  },
+  "properties": {
+    "adaptGameResolutionAtRuntime": true,
+    "antialiasingMode": "MSAA",
+    "antialisingEnabledOnMobile": false,
+    "folderProject": false,
+    "orientation": "landscape",
+    "packageName": "com.example.gamename",
+    "pixelsRounding": false,
+    "projectUuid": "1efd7204-6edf-47be-8e0f-6e6097afa2e4",
+    "scaleMode": "linear",
+    "sizeOnStartupMode": "adaptWidth",
+    "templateSlug": "",
+    "useExternalSourceFiles": false,
+    "version": "1.0.0",
+    "name": "RigidFour Demo",
+    "description": "A project in the GDevelop game engine demonstrating the RigidFour rotation turns and movement within a car.",
+    "author": "",
+    "windowWidth": 1280,
+    "windowHeight": 720,
+    "latestCompilationDirectory": "",
+    "maxFPS": 60,
+    "minFPS": 20,
+    "verticalSync": false,
+    "platformSpecificAssets": {},
+    "loadingScreen": {
+      "backgroundColor": 0,
+      "backgroundFadeInDuration": 0.2,
+      "backgroundImageResourceName": "",
+      "gdevelopLogoStyle": "light",
+      "logoAndProgressFadeInDuration": 0.2,
+      "logoAndProgressLogoFadeInDelay": 0,
+      "minDuration": 1.5,
+      "progressBarColor": 16777215,
+      "progressBarHeight": 20,
+      "progressBarMaxWidth": 200,
+      "progressBarMinWidth": 40,
+      "progressBarWidthPercent": 30,
+      "showGDevelopSplash": true,
+      "showProgressBar": true
+    },
+    "watermark": {
+      "placement": "bottom-left",
+      "showWatermark": true
+    },
+    "authorIds": [
+      "7gJjyj1rTqNP0fdHwTFabwZXf0H3"
+    ],
+    "authorUsernames": [
+      "Yourself (no username)"
+    ],
+    "categories": [],
+    "playableDevices": [],
+    "extensionProperties": [],
+    "platforms": [
+      {
+        "name": "GDevelop JS platform"
+      }
+    ],
+    "currentPlatform": "GDevelop JS platform"
+  },
+  "resources": {
+    "resources": [
+      {
+        "alwaysLoaded": false,
+        "file": "assets/Automobile2.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Automobile.png",
+        "smoothed": true,
+        "userAdded": true,
+        "origin": {
+          "identifier": "https://project-resources.gdevelop.io/849bc9a2-f76a-4b3a-b423-5d007d0c968b/resources/f72ecb20ffab9e485f9f6762fa34274519f82ef72ada127eb96b6eb505f57633-Automobile.png",
+          "name": "cloud-project-resource"
+        }
+      }
+    ],
+    "resourceFolders": []
+  },
+  "objects": [],
+  "objectsFolderStructure": {
+    "folderName": "__ROOT"
+  },
+  "objectsGroups": [],
+  "variables": [],
+  "layouts": [
+    {
+      "b": 136,
+      "disableInputWhenNotFocused": true,
+      "mangledName": "Game",
+      "name": "Game",
+      "r": 25,
+      "standardSortMethod": true,
+      "stopSoundsOnStartup": true,
+      "title": "",
+      "v": 0,
+      "uiSettings": {
+        "grid": false,
+        "gridType": "rectangular",
+        "gridWidth": 32,
+        "gridHeight": 32,
+        "gridOffsetX": 0,
+        "gridOffsetY": 0,
+        "gridColor": 10401023,
+        "gridAlpha": 0.8,
+        "snap": false,
+        "zoomFactor": 0.5290357402156838,
+        "windowMask": false
+      },
+      "objectsGroups": [],
+      "variables": [],
+      "instances": [
+        {
+          "angle": 0,
+          "customSize": true,
+          "depth": 1,
+          "height": 198,
+          "keepRatio": true,
+          "layer": "",
+          "name": "Player",
+          "persistentUuid": "c3a44f00-e5a1-4868-b4e1-a1a16e13c29b",
+          "width": 92,
+          "x": 609,
+          "y": 261,
+          "zOrder": 1,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": [
+            {
+              "folded": true,
+              "name": "TargetRotation",
+              "type": "number",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "objects": [
+        {
+          "adaptCollisionMaskAutomatically": true,
+          "assetStoreId": "",
+          "name": "Player",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [
+            {
+              "folded": true,
+              "name": "TargetRotation",
+              "type": "number",
+              "value": 0
+            },
+            {
+              "folded": true,
+              "name": "MovingNorth",
+              "type": "boolean",
+              "value": false
+            },
+            {
+              "folded": true,
+              "name": "MovingSouth",
+              "type": "boolean",
+              "value": false
+            },
+            {
+              "folded": true,
+              "name": "MovingWest",
+              "type": "boolean",
+              "value": false
+            },
+            {
+              "folded": true,
+              "name": "MovingEast",
+              "type": "boolean",
+              "value": false
+            }
+          ],
+          "effects": [],
+          "behaviors": [
+            {
+              "name": "Physics2",
+              "type": "Physics2::Physics2Behavior",
+              "bodyType": "Dynamic",
+              "bullet": false,
+              "fixedRotation": true,
+              "canSleep": false,
+              "shape": "Box",
+              "shapeDimensionA": 92,
+              "shapeDimensionB": 198,
+              "shapeOffsetX": 0,
+              "shapeOffsetY": 0,
+              "polygonOrigin": "Center",
+              "vertices": [],
+              "density": 1,
+              "friction": 0,
+              "restitution": 0,
+              "linearDamping": 0.1,
+              "angularDamping": 0.1,
+              "gravityScale": 0,
+              "layers": 1,
+              "masks": 1
+            }
+          ],
+          "animations": [
+            {
+              "name": "",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": true,
+                      "image": "Automobile.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": [
+                        [
+                          {
+                            "x": 0,
+                            "y": 0
+                          },
+                          {
+                            "x": 190,
+                            "y": 0
+                          },
+                          {
+                            "x": 190,
+                            "y": 446
+                          },
+                          {
+                            "x": 0,
+                            "y": 446
+                          }
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "objectsFolderStructure": {
+        "folderName": "__ROOT",
+        "children": [
+          {
+            "objectName": "Player"
+          }
+        ]
+      },
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": []
+        },
+        {
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": [
+            "const NORTH_ROTATION = 0;",
+            "const NORTHWEST_ROTATION = 315;",
+            "const NORTHEAST_ROTATION = 45;",
+            "const SOUTH_ROTATION = 180;",
+            "const SOUTHWEST_ROTATION = 225;",
+            "const SOUTHEAST_ROTATION = 135;",
+            "const WEST_ROTATION = 270;",
+            "const EAST_ROTATION = 90;",
+            "const TURN_SPEED = 5;",
+            "",
+            "const player = objects[0];",
+            "const player_vars = player.getVariables();",
+            "",
+            "let a = lock360Degrees(player.getAngle());",
+            "let b = player_vars.get(\"TargetRotation\").getAsNumber();",
+            "",
+            "if (a != b) {",
+            "    // Rotate either clockwise or counterclockwise for the",
+            "    // shortest route.",
+            "",
+            "    let ab = a - b; /* counterclockwise */",
+            "    let ba = b - a; /* clockwise */",
+            "",
+            "    // For the lower delta, add 360.",
+            "    if (Math.min(ab, ba) == ab) {",
+            "        ab += 360;",
+            "    } else {",
+            "        ba += 360;",
+            "    }",
+            "",
+            "    // Rotate",
+            "    if (ab < ba) {",
+            "        // counterclockwise",
+            "        a -= TURN_SPEED;",
+            "        a = lock360Degrees(a);",
+            "        a = a < b ? b : a;",
+            "    } else {",
+            "        // clockwise",
+            "        a += TURN_SPEED;",
+            "        a = a > b ? b : a;",
+            "    }",
+            "",
+            "    player.setAngle(a);",
+            "}",
+            "",
+            "// Lock degrees to be between 0 and 360.",
+            "function lock360Degrees(a) {",
+            "    a = a < 0 ? 360 - (-a % 360) : a;",
+            "    return a % 360;",
+            "}",
+            "",
+            "const movingNorth = player_vars.get(\"MovingNorth\").getAsBoolean();",
+            "const movingSouth = player_vars.get(\"MovingSouth\").getAsBoolean();",
+            "const movingWest = player_vars.get(\"MovingWest\").getAsBoolean();",
+            "const movingEast = player_vars.get(\"MovingEast\").getAsBoolean();",
+            "",
+            "// Set target rotation",
+            "if (movingNorth) {",
+            "    player_vars.get(\"TargetRotation\").setNumber(movingWest ? NORTHWEST_ROTATION : movingEast ? NORTHEAST_ROTATION : NORTH_ROTATION);",
+            "} else if (movingSouth) {",
+            "    player_vars.get(\"TargetRotation\").setNumber(movingWest ? SOUTHWEST_ROTATION : movingEast ? SOUTHEAST_ROTATION : SOUTH_ROTATION);",
+            "} else if (movingWest) {",
+            "    player_vars.get(\"TargetRotation\").setNumber(WEST_ROTATION);",
+            "} else if (movingEast) {",
+            "    player_vars.get(\"TargetRotation\").setNumber(EAST_ROTATION);",
+            "}",
+            "",
+            "// Inertia",
+            "if (!(movingNorth || movingSouth || movingWest || movingEast)) {",
+            "    if ([NORTH_ROTATION, SOUTH_ROTATION, WEST_ROTATION, EAST_ROTATION].indexOf(b) == -1  && b != 0) {",
+            "        b -= 45;",
+            "        player_vars.get(\"TargetRotation\").setNumber(b);",
+            "    }",
+            "} "
+          ],
+          "parameterObjects": "Player",
+          "useStrict": true,
+          "eventsSheetExpanded": false
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "KeyFromTextPressed"
+              },
+              "parameters": [
+                "",
+                "\"Up\""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetBooleanObjectVariable"
+              },
+              "parameters": [
+                "Player",
+                "MovingNorth",
+                "True",
+                "0"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "KeyFromTextPressed"
+              },
+              "parameters": [
+                "",
+                "\"Down\""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetBooleanObjectVariable"
+              },
+              "parameters": [
+                "Player",
+                "MovingSouth",
+                "True",
+                "180"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "KeyFromTextPressed"
+              },
+              "parameters": [
+                "",
+                "\"Left\""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetBooleanObjectVariable"
+              },
+              "parameters": [
+                "Player",
+                "MovingWest",
+                "True",
+                "270"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "KeyFromTextPressed"
+              },
+              "parameters": [
+                "",
+                "\"Right\""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetBooleanObjectVariable"
+              },
+              "parameters": [
+                "Player",
+                "MovingEast",
+                "True",
+                "90"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "KeyFromTextReleased"
+              },
+              "parameters": [
+                "",
+                "\"Right\""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetBooleanObjectVariable"
+              },
+              "parameters": [
+                "Player",
+                "MovingEast",
+                "False",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "KeyFromTextReleased"
+              },
+              "parameters": [
+                "",
+                "\"Left\""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetBooleanObjectVariable"
+              },
+              "parameters": [
+                "Player",
+                "MovingWest",
+                "False",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "KeyFromTextReleased"
+              },
+              "parameters": [
+                "",
+                "\"Down\""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetBooleanObjectVariable"
+              },
+              "parameters": [
+                "Player",
+                "MovingSouth",
+                "False",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "KeyFromTextReleased"
+              },
+              "parameters": [
+                "",
+                "\"Up\""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetBooleanObjectVariable"
+              },
+              "parameters": [
+                "Player",
+                "MovingNorth",
+                "False",
+                ""
+              ]
+            }
+          ]
+        }
+      ],
+      "layers": [
+        {
+          "ambientLightColorB": 200,
+          "ambientLightColorG": 200,
+          "ambientLightColorR": 200,
+          "camera3DFarPlaneDistance": 10000,
+          "camera3DFieldOfView": 45,
+          "camera3DNearPlaneDistance": 3,
+          "cameraType": "",
+          "followBaseLayerCamera": false,
+          "isLightingLayer": false,
+          "isLocked": false,
+          "name": "",
+          "renderingType": "",
+          "visibility": true,
+          "cameras": [
+            {
+              "defaultSize": true,
+              "defaultViewport": true,
+              "height": 0,
+              "viewportBottom": 1,
+              "viewportLeft": 0,
+              "viewportRight": 1,
+              "viewportTop": 0,
+              "width": 0
+            }
+          ],
+          "effects": [
+            {
+              "effectType": "Scene3D::HemisphereLight",
+              "name": "3D Light",
+              "doubleParameters": {
+                "elevation": 45,
+                "intensity": 1,
+                "rotation": 0
+              },
+              "stringParameters": {
+                "groundColor": "64;64;64",
+                "skyColor": "255;255;255",
+                "top": "Y-"
+              },
+              "booleanParameters": {}
+            }
+          ]
+        }
+      ],
+      "behaviorsSharedData": [
+        {
+          "name": "Animation",
+          "type": "AnimatableCapability::AnimatableBehavior"
+        },
+        {
+          "name": "Effect",
+          "type": "EffectCapability::EffectBehavior"
+        },
+        {
+          "name": "Flippable",
+          "type": "FlippableCapability::FlippableBehavior"
+        },
+        {
+          "name": "Opacity",
+          "type": "OpacityCapability::OpacityBehavior"
+        },
+        {
+          "name": "Physics2",
+          "type": "Physics2::Physics2Behavior",
+          "gravityX": 0,
+          "gravityY": 9.8,
+          "scaleX": 100,
+          "scaleY": 100
+        },
+        {
+          "name": "Resizable",
+          "type": "ResizableCapability::ResizableBehavior"
+        },
+        {
+          "name": "Scale",
+          "type": "ScalableCapability::ScalableBehavior"
+        }
+      ]
+    }
+  ],
+  "externalEvents": [],
+  "eventsFunctionsExtensions": [],
+  "externalLayouts": [],
+  "externalSourceFiles": []
+}
