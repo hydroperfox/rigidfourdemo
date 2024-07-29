@@ -80,6 +80,24 @@
           "identifier": "https://project-resources.gdevelop.io/849bc9a2-f76a-4b3a-b423-5d007d0c968b/resources/f72ecb20ffab9e485f9f6762fa34274519f82ef72ada127eb96b6eb505f57633-Automobile.png",
           "name": "cloud-project-resource"
         }
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Automobile2.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Automobile2.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "assets/Automobile.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "assets\\Automobile.png",
+        "smoothed": true,
+        "userAdded": true
       }
     ],
     "resourceFolders": []
@@ -218,7 +236,7 @@
                   "sprites": [
                     {
                       "hasCustomCollisionMask": true,
-                      "image": "Automobile.png",
+                      "image": "assets\\Automobile.png",
                       "points": [],
                       "originPoint": {
                         "name": "origine",
